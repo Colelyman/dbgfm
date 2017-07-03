@@ -15,7 +15,8 @@ $BWTDISK/text_rev -vvv $1.joined $1.joined.rev
 $BWTDISK/bwte -vvv $1.joined.rev
 
 # Rename the bwt
-mv $1.joined.rev.bwt `basename $1 .fa`.bwtdisk
+mv $1.joined.rev.bwt "${1%.*}".bwtdisk
 
 # Remove the intermediary files
-rm $1.joined $1.joined.rev
+rm $1.joined $1.joined.rev $1.joined.rev.bwt.aux
+[ -e .bwtdisk ] && rm .bwtdisk
