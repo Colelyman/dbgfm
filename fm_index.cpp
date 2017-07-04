@@ -22,7 +22,6 @@ FMIndex::FMIndex(const std::string& filename, int sampleRate) : m_numStrings(0),
 {
     setSampleRates(DEFAULT_SAMPLE_RATE_LARGE, sampleRate);
 
-    std::cout << "Loading " << filename << "\n";
     loadBWT(filename);
 }
 
@@ -71,8 +70,6 @@ void FMIndex::loadBWT(const std::string& filename)
 
     m_decoder = builder.getDecoder();
     m_eof_pos = builder.getEOFPos();
-
-    printInfo();
 }
 
 //
