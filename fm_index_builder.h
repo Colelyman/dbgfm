@@ -87,6 +87,12 @@ class FMIndexBuilder
         std::ofstream* mp_str_tmp;
         std::ofstream* mp_sm_tmp;
         std::ofstream* mp_lm_tmp;
+
+        // path to the bwtdisk file
+        std::string dirpath;
+
+        // the hidden filename
+        std::string hidden_filename;
 };
 
 #endif
