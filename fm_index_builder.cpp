@@ -17,6 +17,11 @@ FMIndexBuilder::FMIndexBuilder(const std::string& filename,
                                size_t small_sample_rate,
                                size_t large_sample_rate)
 {
+    // parse filename
+    size_t idx = filename.find_last_of("/");
+    dirpath = filename.substr(0, idx + 1);
+    hidden_filename = "." + filename.substr(idx + 1);
+
     // Create temporary files for the 3 components of the index
     mp_str_tmp = new std::ofstream(getStringFilename().c_str(), std::ios::binary);
     mp_sm_tmp = new std::ofstream(getSmallMarkerFilename().c_str(), std::ios::binary);
@@ -38,18 +43,18 @@ FMIndexBuilder::~FMIndexBuilder()
 
 std::string FMIndexBuilder::getStringFilename() const
 {
-    return "dbgfm.str";
+    return dirpath + hidden_filename + ".str";
 }
 
 std::string FMIndexBuilder::getSmallMarkerFilename() const
 {
-    return "dbgfm.sm";
+    return dirpath + hidden_filename + ".sm";
 
 }
 
 std::string FMIndexBuilder::getLargeMarkerFilename() const
 {
-    return "dbgfm.lm";
+    return dirpath + hidden_filename + ".lm";
 }
 
 void FMIndexBuilder::build(const std::string& filename)
